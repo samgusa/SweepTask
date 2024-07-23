@@ -18,6 +18,7 @@
 		FE40B3602C503B61005170AF /* ScannedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B35F2C503B61005170AF /* ScannedDevice.swift */; };
 		FE40B3642C503FB0005170AF /* DeviceLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3632C503FB0005170AF /* DeviceLocationView.swift */; };
 		FE40B3662C504B26005170AF /* SignalStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3652C504B26005170AF /* SignalStrengthView.swift */; };
+		FE40B3682C505346005170AF /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3672C505346005170AF /* HapticFeedback.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		FE40B35F2C503B61005170AF /* ScannedDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedDevice.swift; sourceTree = "<group>"; };
 		FE40B3632C503FB0005170AF /* DeviceLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationView.swift; sourceTree = "<group>"; };
 		FE40B3652C504B26005170AF /* SignalStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalStrengthView.swift; sourceTree = "<group>"; };
+		FE40B3672C505346005170AF /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				FE40B35C2C503B16005170AF /* BluetoothManager.swift */,
+				FE40B3672C505346005170AF /* HapticFeedback.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE40B3642C503FB0005170AF /* DeviceLocationView.swift in Sources */,
+				FE40B3682C505346005170AF /* HapticFeedback.swift in Sources */,
 				FE40B3662C504B26005170AF /* SignalStrengthView.swift in Sources */,
 				FE40B3332C5036D3005170AF /* ContentView.swift in Sources */,
 				FE40B35D2C503B16005170AF /* BluetoothManager.swift in Sources */,

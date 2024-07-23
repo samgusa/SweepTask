@@ -14,20 +14,15 @@ struct ContentView: View {
     var body: some View {
             NavigationView {
                 List(bluetoothManager.devices) { device in
-                    NavigationLink(destination: DeviceLocationView()) {
+                    NavigationLink(destination: DeviceLocationView(device: device)) {
                         HStack {
-                            Text(device.peripheral.name ?? "Unknown")
+                            Text(device.peripheral.name ?? "Unknown device")
                             Spacer()
-                            Text("\(device.rssi) dBm")
+                            SignalStrengthView(rssi: device.rssi)
                         }
                     }
                 }
                 .navigationTitle("Bluetooth Devices")
-//                .toolbar(content: {
-//                    ToolbarItem(placement: .topBarTrailing) {
-//                        Image(systemName: "ellipsis")
-//                    }
-//                })
             }
         }
 }
