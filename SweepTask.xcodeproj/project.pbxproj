@@ -14,6 +14,10 @@
 		FE40B3422C5036D5005170AF /* SweepTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3412C5036D5005170AF /* SweepTaskTests.swift */; };
 		FE40B34C2C5036D5005170AF /* SweepTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B34B2C5036D5005170AF /* SweepTaskUITests.swift */; };
 		FE40B34E2C5036D5005170AF /* SweepTaskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B34D2C5036D5005170AF /* SweepTaskUITestsLaunchTests.swift */; };
+		FE40B35D2C503B16005170AF /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B35C2C503B16005170AF /* BluetoothManager.swift */; };
+		FE40B3602C503B61005170AF /* ScannedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B35F2C503B61005170AF /* ScannedDevice.swift */; };
+		FE40B3642C503FB0005170AF /* DeviceLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3632C503FB0005170AF /* DeviceLocationView.swift */; };
+		FE40B3662C504B26005170AF /* SignalStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3652C504B26005170AF /* SignalStrengthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,11 @@
 		FE40B3472C5036D5005170AF /* SweepTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SweepTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE40B34B2C5036D5005170AF /* SweepTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepTaskUITests.swift; sourceTree = "<group>"; };
 		FE40B34D2C5036D5005170AF /* SweepTaskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepTaskUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FE40B35A2C5037DB005170AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FE40B35C2C503B16005170AF /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		FE40B35F2C503B61005170AF /* ScannedDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedDevice.swift; sourceTree = "<group>"; };
+		FE40B3632C503FB0005170AF /* DeviceLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationView.swift; sourceTree = "<group>"; };
+		FE40B3652C504B26005170AF /* SignalStrengthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalStrengthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +103,13 @@
 		FE40B32F2C5036D3005170AF /* SweepTask */ = {
 			isa = PBXGroup;
 			children = (
+				FE40B35E2C503B53005170AF /* Model */,
+				FE40B35B2C503AF9005170AF /* Utilities */,
+				FE40B3612C503E2E005170AF /* View */,
+				FE40B3622C503EA0005170AF /* ViewModel */,
 				FE40B3302C5036D3005170AF /* SweepTaskApp.swift */,
-				FE40B3322C5036D3005170AF /* ContentView.swift */,
 				FE40B3342C5036D5005170AF /* Assets.xcassets */,
+				FE40B35A2C5037DB005170AF /* Info.plist */,
 				FE40B3362C5036D5005170AF /* Preview Content */,
 			);
 			path = SweepTask;
@@ -125,6 +138,39 @@
 				FE40B34D2C5036D5005170AF /* SweepTaskUITestsLaunchTests.swift */,
 			);
 			path = SweepTaskUITests;
+			sourceTree = "<group>";
+		};
+		FE40B35B2C503AF9005170AF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FE40B35C2C503B16005170AF /* BluetoothManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		FE40B35E2C503B53005170AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FE40B35F2C503B61005170AF /* ScannedDevice.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FE40B3612C503E2E005170AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE40B3322C5036D3005170AF /* ContentView.swift */,
+				FE40B3632C503FB0005170AF /* DeviceLocationView.swift */,
+				FE40B3652C504B26005170AF /* SignalStrengthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FE40B3622C503EA0005170AF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +303,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE40B3642C503FB0005170AF /* DeviceLocationView.swift in Sources */,
+				FE40B3662C504B26005170AF /* SignalStrengthView.swift in Sources */,
 				FE40B3332C5036D3005170AF /* ContentView.swift in Sources */,
+				FE40B35D2C503B16005170AF /* BluetoothManager.swift in Sources */,
+				FE40B3602C503B61005170AF /* ScannedDevice.swift in Sources */,
 				FE40B3312C5036D3005170AF /* SweepTaskApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +475,9 @@
 				DEVELOPMENT_TEAM = 4LBT7283WA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SweepTask/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to find nearby devices";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app uses Bluetooth to find nearby devices";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -454,6 +507,9 @@
 				DEVELOPMENT_TEAM = 4LBT7283WA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SweepTask/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to find nearby devices";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app uses Bluetooth to find nearby devices";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
