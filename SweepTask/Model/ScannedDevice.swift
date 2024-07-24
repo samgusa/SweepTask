@@ -7,13 +7,25 @@
 
 import Foundation
 import CoreBluetooth
+import SwiftUI
 
 struct ScannedDevice: Identifiable, Equatable {
-    let id = UUID()
-    var peripheral: CBPeripheral
+    let id: UUID
+    var name: String
     var rssi: Int
 
-    static func == (lhs: ScannedDevice, rhs: ScannedDevice) -> Bool {
-        return lhs.peripheral.identifier == rhs.peripheral.identifier
-    }
+    var backgroundColor: Color {
+            switch rssi {
+            case ..<(-80):
+                return .red
+            case -80..<(-40):
+                return .red
+            case -40..<(-10):
+                return .green
+            case -10...Int.max:
+                return .green
+            default:
+                return .red
+            }
+        }
 }

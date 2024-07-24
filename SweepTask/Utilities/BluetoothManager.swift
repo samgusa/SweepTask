@@ -5,45 +5,53 @@
 //  Created by Sam Greenhill on 7/23/24.
 //
 
+//
+//  BluetoothViewModel.swift
+//  SweepTask
+//
+//  Created by Sam Greenhill on 7/24/24.
+//
+
 import Foundation
 import CoreBluetooth
-import SwiftUI
 
-class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+class BluetoothViewModel: NSObject, ObservableObject, CBCentralManagerDelegate {
     @Published var devices: [ScannedDevice] = []
-    var centralManager: CBCentralManager!
-    var calculatedDistance: Double!
-    
+    @Published var selectedDevice: ScannedDevice?
+    private var centralManager: CBCentralManager!
+    private var timer: Timer?
+
     override init() {
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
-    
+
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
-            centralManager.scanForPeripherals(withServices: nil)
+            centralManager.scanForPeripherals(withServices: nil, options: nil)
         } else {
-            print("Bluetooth is not available")
+            // Handle other states
         }
     }
-    
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        // Update or add the device to the scannedDevices array
-        let scannedDevice = ScannedDevice(peripheral: peripheral, rssi: RSSI.intValue)
-        // Update your list of devices or notify the UI
-        devices.append(scannedDevice)
-        // Notify the UI or handle it as needed
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        guard error == nil else {
-            print("Error updating RSSI: \(error!.localizedDescription)")
-            return
-        }
-        // Update the device's RSSI in the scannedDevices array
-        if let index = devices.firstIndex(where: { $0.peripheral.identifier == peripheral.identifier }) {
+
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        let device = ScannedDevice(id: peripheral.identifier, name: peripheral.name ?? "Unknown", rssi: RSSI.intValue)
+        if let index = devices.firstIndex(where: { $0.id == device.id }) {
             devices[index].rssi = RSSI.intValue
+        } else {
+            devices.append(device)
         }
     }
-    
+
+    func startUpdatingRSSI(for device: ScannedDevice) {
+        selectedDevice = device
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.centralManager.scanForPeripherals(withServices: nil, options: nil)
+        }
+    }
+
+    func stopUpdatingRSSI() {
+        timer?.invalidate()
+        timer = nil
+    }
 }

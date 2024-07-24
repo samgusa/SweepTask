@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var bluetoothManager = BluetoothManager()
+    @ObservedObject var bluetoothManager = BluetoothViewModel()
 
     var body: some View {
             NavigationView {
                 List(bluetoothManager.devices) { device in
-                    NavigationLink(destination: DeviceLocationView(device: device)) {
+                    NavigationLink(destination: DeviceLocationView(viewModel: bluetoothManager, device: device)) {
                         HStack {
-                            Text(device.peripheral.name ?? "Unknown device")
+                            Text(device.name)
                             Spacer()
-                            SignalStrengthView(rssi: device.rssi)
+                            SignalStrengthView(signalModel: SignalStrengthModel(rssi: device.rssi))
                         }
                     }
                 }
