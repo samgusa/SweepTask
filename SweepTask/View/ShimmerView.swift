@@ -15,17 +15,35 @@ struct ShimmerView: View {
             Color.red
                 .ignoresSafeArea(.all)
 
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: Constants.VStackSpacing) {
                 Circle()
-                    .frame(width: 150, height: 150)
+                    .frame(
+                        width: Constants.circleFrame,
+                        height: Constants.circleFrame)
 
-                RoundedRectangle(cornerRadius: 4)
-                    .frame(width: 150, height: 30)
+                RoundedRectangle(
+                    cornerRadius: Constants.rectangleCornerRadius)
+                    .frame(
+                        width: Constants.rectangleWidth,
+                        height: Constants.rectangleHeight)
 
             }
             .foregroundStyle(.white)
-            .shimmer(.init(tint: .white, highlight: .black.opacity(0.5)), animation: $startAnimation)
+            .shimmer(
+                .init(
+                    tint: .white,
+                    highlight: .black.opacity(Constants.blackOpacity)),
+                animation: $startAnimation)
         }
+    }
+
+    private enum Constants {
+        static let VStackSpacing: CGFloat = 20
+        static let circleFrame: CGFloat = 150
+        static let rectangleCornerRadius: CGFloat = 4
+        static let rectangleWidth: CGFloat = 150
+        static let rectangleHeight: CGFloat = 30
+        static let blackOpacity: CGFloat = 0.5
     }
 }
 

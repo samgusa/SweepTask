@@ -14,11 +14,16 @@ struct ContentView: View {
     var body: some View {
             NavigationView {
                 List(bluetoothManager.devices) { device in
-                    NavigationLink(destination: DeviceLocationView(viewModel: DeviceLocationViewModel(bluetoothManager: bluetoothManager, device: device))) {
+                    NavigationLink(
+                        destination: DeviceLocationView(
+                            viewModel: DeviceLocationViewModel(
+                                bluetoothManager: bluetoothManager, device: device))) {
                         HStack {
                             Text(device.name)
                             Spacer()
-                            SignalStrengthView(signalModel: SignalStrengthModel(rssi: device.rssi))
+                            SignalStrengthView(
+                                signalModel: SignalStrengthModel(
+                                    rssi: device.rssi))
                         }
                     }
                 }

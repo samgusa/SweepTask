@@ -16,23 +16,29 @@ struct DeviceLocationView: View {
                     VStack {
 
                         Circle()
-                            .frame(width: viewModel.circleSize, height: viewModel.circleSize)
+                            .frame(
+                                width: viewModel.circleSize,
+                                height: viewModel.circleSize)
                             .foregroundStyle(.white)
-                            .animation(.easeInOut, value: viewModel.circleSize)
+                            .animation(.easeInOut,
+                                       value: viewModel.circleSize)
 
-                        Text(String(format: "%.2f meters", viewModel.calculateDistance(rssi: viewModel.device.rssi)))
-                            .font(.title2)
+                        Text(String(format: "%.2f meters", 
+                                    viewModel.calculateDistance(rssi: viewModel.device.rssi)))
+                            .font(Constants.textFont)
                             .padding()
                     }
                 }
             }
         }
         .onAppear {
-            viewModel.bluetoothManager.startUpdatingRSSI(for: viewModel.device)
+            viewModel.bluetoothManager
+                .startUpdatingRSSI(for: viewModel.device)
             viewModel.startLoading()
         }
         .onDisappear {
-            viewModel.bluetoothManager.stopUpdatingRSSI()
+            viewModel.bluetoothManager
+                .stopUpdatingRSSI()
         }
         .onChange(of: viewModel.device.rssi) { oldValue, newValue in
             viewModel.updateProximity(rssi: newValue)
@@ -40,10 +46,19 @@ struct DeviceLocationView: View {
         .navigationTitle(viewModel.device.name)
     }
 
+    private enum Constants {
+        static let textFont: Font = .title2
+    }
 }
 
 #Preview {
-    DeviceLocationView(viewModel: DeviceLocationViewModel(viewModel: BluetoothManager(), device: ScannedDevice(id: UUID(), name: "Test Device", rssi: -10)))
+    DeviceLocationView(
+        viewModel: DeviceLocationViewModel(
+            bluetoothManager: BluetoothManager(),
+            device: ScannedDevice(
+                id: UUID(),
+                name: "Test Device",
+                rssi: -10)))
 }
 
 

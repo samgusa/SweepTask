@@ -24,7 +24,7 @@ struct ShimmerEffectHelper: ViewModifier {
                 .overlay(
                     GeometryReader { geometry in
                         let size = geometry.size
-                        let extraOffset = size.height / 2.5
+                        let extraOffset = size.height / Constants.xtraOffset
 
                         Rectangle()
                             .fill(config.highlight)
@@ -32,7 +32,7 @@ struct ShimmerEffectHelper: ViewModifier {
                                 Rectangle()
                                     .fill(
                                         .linearGradient(
-                                            colors: [.white.opacity(0), config.highlight.opacity(config.highlightOpacity), .white.opacity(0)],
+                                            colors: [.white, config.highlight.opacity(config.highlightOpacity), .white],
                                             startPoint: .leading,
                                             endPoint: .trailing // Horizontal gradient for sides blur
                                         )
@@ -47,11 +47,16 @@ struct ShimmerEffectHelper: ViewModifier {
                 .mask(content)
                 .onAppear {
                     DispatchQueue.main.async {
-                        moveTo = 0.7
+                        moveTo = Constants.moveToValue
                     }
                 }
                 .animation(.linear(duration: config.speed).repeatForever(autoreverses: false), value: moveTo)
         }
+    }
+
+    private enum Constants {
+        static let xtraOffset: CGFloat = 2.5
+        static let moveToValue: CGFloat = 0.7
     }
 }
 

@@ -13,12 +13,21 @@ struct SignalStrengthView: View {
     var body: some View {
         HStack(spacing: 2) {
             ForEach(0..<5) { index in
-                let color: Color = index < signalModel.signalBars ? signalModel.barColor : Color.gray
+                let color: Color = index < signalModel.signalBars ? signalModel.barColor : Constants.grayColor
                 Rectangle()
                     .fill(color)
-                    .frame(width: 3, height: CGFloat(3 * (index + 1)))
+                    .frame(
+                        width: Constants.rectangleFrameCG,
+                        height: CGFloat(Constants.rectangleFrameInt * (index + Constants.rectangleIndexAdd)))
             }
         }
+    }
+
+    private enum Constants {
+        static let grayColor: Color = .gray
+        static let rectangleFrameCG: CGFloat = 3
+        static let rectangleFrameInt: Int = 3
+        static let rectangleIndexAdd: Int = 1
     }
 }
 
