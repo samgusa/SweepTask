@@ -15,7 +15,7 @@
 import Foundation
 import CoreBluetooth
 
-class BluetoothViewModel: NSObject, ObservableObject, CBCentralManagerDelegate {
+class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     @Published var devices: [ScannedDevice] = []
     @Published var selectedDevice: ScannedDevice?
     private var centralManager: CBCentralManager!
