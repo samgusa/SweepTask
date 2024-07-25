@@ -9,55 +9,53 @@ struct DeviceLocationView: View {
     @State var isLoading: Bool = true
     @State var isPulsing: Bool = false
     @State var showNotification: Bool = false
-
-
+    
+    
     var body: some View {
         ZStack {
-            //            if isLoading {
-            //                ShimmerView(startAnimation: $isLoading)
-            //            } else {
-            ZStack {
-                backgroundColor
-                    .ignoresSafeArea(.all)
-                    .animation(.easeInOut, value: backgroundColor)
-                VStack {
-
-                    if isPulsing {
-                        // True
-                        Circle()
-                            .frame(
-                                width: circleSize,
-                                height: circleSize)
-                            .foregroundStyle(.white)
-                            .animation(.easeInOut,
-                                       value: circleSize)
-                            .pulse(Circle())
-                    } else {
-                        // False
-                        Circle()
-                            .frame(
-                                width: circleSize,
-                                height: circleSize)
-                            .foregroundStyle(.white)
-                            .animation(.easeInOut,
-                                       value: circleSize)
+            if isLoading {
+                ShimmerView(startAnimation: $isLoading)
+            } else {
+                ZStack {
+                    backgroundColor
+                        .ignoresSafeArea(.all)
+                        .animation(.easeInOut, value: backgroundColor)
+                    VStack {
+                        if isPulsing {
+                            // True
+                            Circle()
+                                .frame(
+                                    width: circleSize,
+                                    height: circleSize)
+                                .foregroundStyle(.white)
+                                .animation(.easeInOut,
+                                           value: circleSize)
+                                .pulse(Circle())
+                        } else {
+                            // False
+                            Circle()
+                                .frame(
+                                    width: circleSize,
+                                    height: circleSize)
+                                .foregroundStyle(.white)
+                                .animation(.easeInOut,
+                                           value: circleSize)
+                        }
+                        Text(String(format: "%.2f meters",
+                                    calculateDistance(rssi: viewModel.device.rssi)))
+                        .font(Constants.textFont)
+                        .padding(.top)
                     }
-
-
-                    Text(String(format: "%.2f meters",
-                                calculateDistance(rssi: viewModel.device.rssi)))
-                    .font(Constants.textFont)
+                    
+                    
+                    CustomNotifs(systemIcon: "star.fill", iconColor: .green,
+                                 notifText: "You are near your device")
+                    .frame(maxHeight: .infinity, alignment: .top)
+                    .opacity(showNotification ? 1 : 0)
+                    .offset(y: showNotification ? 0 : -200)
                     .padding()
                 }
-
-                CustomNotifs(systemIcon: "star.fill", iconColor: .green,
-                             notifText: "You are near your device")
-                .frame(maxHeight: .infinity, alignment: .top)
-                .opacity(showNotification ? 1 : 0)
-                .offset(y: showNotification ? 0 : -200)
-                .padding()
             }
-            //            }
         }
         .onAppear {
             viewModel.bluetoothManager
@@ -73,11 +71,12 @@ struct DeviceLocationView: View {
         }
         .navigationTitle(viewModel.device.name)
     }
-
+    
     private enum Constants {
         static let textFont: Font = .title2
+        static let VStackSpacing: CGFloat = 20
     }
-
+    
     func calculateDistance(rssi: Int) -> Double {
         let txPower = -59
         let ratio = Double(rssi) / Double(txPower)
@@ -87,7 +86,7 @@ struct DeviceLocationView: View {
             return (0.89976 * pow(ratio, 7.7095)) + 0.111
         }
     }
-
+    
     func startLoading() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             withAnimation {
@@ -95,10 +94,10 @@ struct DeviceLocationView: View {
             }
         }
     }
-
+    
     func updateProximity(rssi: Int) {
         let distance = calculateDistance(rssi: rssi)
-
+        
         let proximityRange = viewModel.getProximityRange(for: distance)
         circleSize = proximityRange.circleSize
         backgroundColor = proximityRange.color
@@ -114,7 +113,7 @@ struct DeviceLocationView: View {
                 self.showNotification = false
             }
         }
-
+        
         let intensity = proximityRange.hapticIntensity
         if intensity > 0 {
             let generator = UIImpactFeedbackGenerator(style: .medium)

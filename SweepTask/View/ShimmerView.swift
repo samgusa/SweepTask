@@ -43,7 +43,7 @@ struct ShimmerView: View {
         static let circleFrame: CGFloat = 150
         static let rectangleCornerRadius: CGFloat = 4
         static let rectangleHeight: CGFloat = 30
-        static let rectangleWidth: CGFloat = 150
+        static let rectangleWidth: CGFloat = 90
         static let VStackSpacing: CGFloat = 20
     }
 }
