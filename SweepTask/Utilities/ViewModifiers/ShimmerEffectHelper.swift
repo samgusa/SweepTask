@@ -32,7 +32,7 @@ struct ShimmerEffectHelper: ViewModifier {
                                 Rectangle()
                                     .fill(
                                         .linearGradient(
-                                            colors: [.white, config.highlight.opacity(config.highlightOpacity), .white],
+                                            colors: [.white.opacity(0), config.highlight.opacity(config.highlightOpacity), .white.opacity(0)],
                                             startPoint: .leading,
                                             endPoint: .trailing // Horizontal gradient for sides blur
                                         )
@@ -55,8 +55,8 @@ struct ShimmerEffectHelper: ViewModifier {
     }
 
     private enum Constants {
-        static let xtraOffset: CGFloat = 2.5
         static let moveToValue: CGFloat = 0.7
+        static let xtraOffset: CGFloat = 2.5
     }
 }
 

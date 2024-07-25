@@ -3,28 +3,33 @@ import CoreBluetooth
 
 struct DeviceLocationView: View {
     @ObservedObject var viewModel: DeviceLocationViewModel
+    @State var backgroundColor: Color = .red
+    @State var circleSize: CGFloat = 150
+    @State var hapticFeedback = UIImpactFeedbackGenerator(style: .medium)
+    @State var isLoading: Bool = true
+
 
     var body: some View {
         ZStack {
-            if viewModel.isLoading {
-                ShimmerView(startAnimation: $viewModel.isLoading)
+            if isLoading {
+                ShimmerView(startAnimation: $isLoading)
             } else {
                 ZStack {
-                    viewModel.backgroundColor
+                    backgroundColor
                         .ignoresSafeArea(.all)
-                        .animation(.easeInOut, value: viewModel.backgroundColor)
+                        .animation(.easeInOut, value: backgroundColor)
                     VStack {
 
                         Circle()
                             .frame(
-                                width: viewModel.circleSize,
-                                height: viewModel.circleSize)
+                                width: circleSize,
+                                height: circleSize)
                             .foregroundStyle(.white)
                             .animation(.easeInOut,
-                                       value: viewModel.circleSize)
+                                       value: circleSize)
 
                         Text(String(format: "%.2f meters", 
-                                    viewModel.calculateDistance(rssi: viewModel.device.rssi)))
+                                    calculateDistance(rssi: viewModel.device.rssi)))
                             .font(Constants.textFont)
                             .padding()
                     }
@@ -34,20 +39,53 @@ struct DeviceLocationView: View {
         .onAppear {
             viewModel.bluetoothManager
                 .startUpdatingRSSI(for: viewModel.device)
-            viewModel.startLoading()
+            startLoading()
         }
         .onDisappear {
             viewModel.bluetoothManager
                 .stopUpdatingRSSI()
         }
         .onChange(of: viewModel.device.rssi) { oldValue, newValue in
-            viewModel.updateProximity(rssi: newValue)
+            updateProximity(rssi: newValue)
         }
         .navigationTitle(viewModel.device.name)
     }
 
     private enum Constants {
         static let textFont: Font = .title2
+    }
+
+    func calculateDistance(rssi: Int) -> Double {
+        let txPower = -59
+        let ratio = Double(rssi) / Double(txPower)
+        if ratio < 1.0 {
+            return pow(ratio, 10)
+        } else {
+            return (0.89976 * pow(ratio, 7.7095)) + 0.111
+        }
+    }
+
+    func startLoading() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            withAnimation {
+                isLoading = false
+            }
+        }
+    }
+
+    func updateProximity(rssi: Int) {
+        let distance = calculateDistance(rssi: rssi)
+
+        let proximityRange = viewModel.getProximityRange(for: distance)
+        circleSize = proximityRange.circleSize
+        backgroundColor = proximityRange.color
+
+        let intensity = proximityRange.hapticIntensity
+        if intensity > 0 {
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.prepare()
+            generator.impactOccurred(intensity: intensity)
+        }
     }
 }
 

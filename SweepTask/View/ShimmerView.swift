@@ -10,6 +10,7 @@ import SwiftUI
 struct ShimmerView: View {
 
     @Binding var startAnimation: Bool
+
     var body: some View {
         ZStack {
             Color.red
@@ -38,12 +39,12 @@ struct ShimmerView: View {
     }
 
     private enum Constants {
-        static let VStackSpacing: CGFloat = 20
+        static let blackOpacity: CGFloat = 0.5
         static let circleFrame: CGFloat = 150
         static let rectangleCornerRadius: CGFloat = 4
-        static let rectangleWidth: CGFloat = 150
         static let rectangleHeight: CGFloat = 30
-        static let blackOpacity: CGFloat = 0.5
+        static let rectangleWidth: CGFloat = 150
+        static let VStackSpacing: CGFloat = 20
     }
 }
 

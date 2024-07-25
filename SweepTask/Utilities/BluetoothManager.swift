@@ -26,20 +26,20 @@ class BluetoothManager: NSObject, ObservableObject, CBCentralManagerDelegate {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
 
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == .poweredOn {
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
-        } else {
-            // Handle other states
-        }
-    }
-
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         let device = ScannedDevice(id: peripheral.identifier, name: peripheral.name ?? "Unknown", rssi: RSSI.intValue)
         if let index = devices.firstIndex(where: { $0.id == device.id }) {
             devices[index].rssi = RSSI.intValue
         } else {
             devices.append(device)
+        }
+    }
+
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        if central.state == .poweredOn {
+            centralManager.scanForPeripherals(withServices: nil, options: nil)
+        } else {
+            // Handle other states
         }
     }
 
