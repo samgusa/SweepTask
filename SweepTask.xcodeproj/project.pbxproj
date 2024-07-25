@@ -25,6 +25,8 @@
 		FE40B3F42C51DA44005170AF /* ShimmerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3F32C51DA44005170AF /* ShimmerConfig.swift */; };
 		FE40B3F72C51DAA6005170AF /* ShimmerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3F62C51DAA6005170AF /* ShimmerExtensions.swift */; };
 		FE40B3F92C51DCC9005170AF /* DeviceLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3F82C51DCC9005170AF /* DeviceLocationViewModel.swift */; };
+		FE40B3FE2C51F1B4005170AF /* PulseEffectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3FD2C51F1B4005170AF /* PulseEffectHelper.swift */; };
+		FE40B4012C51F42E005170AF /* CustomNotifs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B4002C51F42E005170AF /* CustomNotifs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		FE40B3F32C51DA44005170AF /* ShimmerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerConfig.swift; sourceTree = "<group>"; };
 		FE40B3F62C51DAA6005170AF /* ShimmerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerExtensions.swift; sourceTree = "<group>"; };
 		FE40B3F82C51DCC9005170AF /* DeviceLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLocationViewModel.swift; sourceTree = "<group>"; };
+		FE40B3FD2C51F1B4005170AF /* PulseEffectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseEffectHelper.swift; sourceTree = "<group>"; };
+		FE40B4002C51F42E005170AF /* CustomNotifs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNotifs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,7 @@
 		FE40B3612C503E2E005170AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FE40B3FF2C51F41E005170AF /* Reusables */,
 				FE40B3F52C51DA96005170AF /* Extensions */,
 				FE40B3322C5036D3005170AF /* ContentView.swift */,
 				FE40B3632C503FB0005170AF /* DeviceLocationView.swift */,
@@ -198,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				FE40B3F12C51D9E0005170AF /* ShimmerEffectHelper.swift */,
+				FE40B3FD2C51F1B4005170AF /* PulseEffectHelper.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -208,6 +214,14 @@
 				FE40B3F62C51DAA6005170AF /* ShimmerExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FE40B3FF2C51F41E005170AF /* Reusables */ = {
+			isa = PBXGroup;
+			children = (
+				FE40B4002C51F42E005170AF /* CustomNotifs.swift */,
+			);
+			path = Reusables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,6 +364,8 @@
 				FE40B3F22C51D9E0005170AF /* ShimmerEffectHelper.swift in Sources */,
 				FE40B3ED2C51C99A005170AF /* ProximityRange.swift in Sources */,
 				FE40B3602C503B61005170AF /* ScannedDevice.swift in Sources */,
+				FE40B3FE2C51F1B4005170AF /* PulseEffectHelper.swift in Sources */,
+				FE40B4012C51F42E005170AF /* CustomNotifs.swift in Sources */,
 				FE40B3F92C51DCC9005170AF /* DeviceLocationViewModel.swift in Sources */,
 				FE40B3312C5036D3005170AF /* SweepTaskApp.swift in Sources */,
 				FE40B3EB2C51997B005170AF /* SignalStrengthModel.swift in Sources */,

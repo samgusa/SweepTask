@@ -7,19 +7,23 @@ struct DeviceLocationView: View {
     @State var circleSize: CGFloat = 150
     @State var hapticFeedback = UIImpactFeedbackGenerator(style: .medium)
     @State var isLoading: Bool = true
+    @State var isPulsing: Bool = false
+    @State var showNotification: Bool = false
 
 
     var body: some View {
         ZStack {
-            if isLoading {
-                ShimmerView(startAnimation: $isLoading)
-            } else {
-                ZStack {
-                    backgroundColor
-                        .ignoresSafeArea(.all)
-                        .animation(.easeInOut, value: backgroundColor)
-                    VStack {
+            //            if isLoading {
+            //                ShimmerView(startAnimation: $isLoading)
+            //            } else {
+            ZStack {
+                backgroundColor
+                    .ignoresSafeArea(.all)
+                    .animation(.easeInOut, value: backgroundColor)
+                VStack {
 
+                    if isPulsing {
+                        // True
                         Circle()
                             .frame(
                                 width: circleSize,
@@ -27,14 +31,33 @@ struct DeviceLocationView: View {
                             .foregroundStyle(.white)
                             .animation(.easeInOut,
                                        value: circleSize)
-
-                        Text(String(format: "%.2f meters", 
-                                    calculateDistance(rssi: viewModel.device.rssi)))
-                            .font(Constants.textFont)
-                            .padding()
+                            .pulse(Circle())
+                    } else {
+                        // False
+                        Circle()
+                            .frame(
+                                width: circleSize,
+                                height: circleSize)
+                            .foregroundStyle(.white)
+                            .animation(.easeInOut,
+                                       value: circleSize)
                     }
+
+
+                    Text(String(format: "%.2f meters",
+                                calculateDistance(rssi: viewModel.device.rssi)))
+                    .font(Constants.textFont)
+                    .padding()
                 }
+
+                CustomNotifs(systemIcon: "star.fill", iconColor: .green,
+                             notifText: "You are near your device")
+                .frame(maxHeight: .infinity, alignment: .top)
+                .opacity(showNotification ? 1 : 0)
+                .offset(y: showNotification ? 0 : -200)
+                .padding()
             }
+            //            }
         }
         .onAppear {
             viewModel.bluetoothManager
@@ -79,6 +102,18 @@ struct DeviceLocationView: View {
         let proximityRange = viewModel.getProximityRange(for: distance)
         circleSize = proximityRange.circleSize
         backgroundColor = proximityRange.color
+        
+        if proximityRange == .nextTo {
+            isPulsing = true
+            withAnimation {
+                self.showNotification = true
+            }
+        } else {
+            isPulsing = false
+            withAnimation {
+                self.showNotification = false
+            }
+        }
 
         let intensity = proximityRange.hapticIntensity
         if intensity > 0 {
@@ -86,6 +121,7 @@ struct DeviceLocationView: View {
             generator.prepare()
             generator.impactOccurred(intensity: intensity)
         }
+        
     }
 }
 
