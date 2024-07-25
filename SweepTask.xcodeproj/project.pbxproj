@@ -21,6 +21,11 @@
 		FE40B3682C505346005170AF /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3672C505346005170AF /* HapticFeedback.swift */; };
 		FE40B3E92C518D5B005170AF /* BluetoothViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3E82C518D5B005170AF /* BluetoothViewModel.swift */; };
 		FE40B3EB2C51997B005170AF /* SignalStrengthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3EA2C51997B005170AF /* SignalStrengthModel.swift */; };
+		FE40B3ED2C51C99A005170AF /* ProximityRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3EC2C51C99A005170AF /* ProximityRange.swift */; };
+		FE40B3EF2C51CB1F005170AF /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3EE2C51CB1F005170AF /* ShimmerView.swift */; };
+		FE40B3F22C51D9E0005170AF /* ShimmerEffectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3F12C51D9E0005170AF /* ShimmerEffectHelper.swift */; };
+		FE40B3F42C51DA44005170AF /* ShimmerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3F32C51DA44005170AF /* ShimmerConfig.swift */; };
+		FE40B3F72C51DAA6005170AF /* ShimmerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE40B3F62C51DAA6005170AF /* ShimmerExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +64,11 @@
 		FE40B3672C505346005170AF /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		FE40B3E82C518D5B005170AF /* BluetoothViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewModel.swift; sourceTree = "<group>"; };
 		FE40B3EA2C51997B005170AF /* SignalStrengthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalStrengthModel.swift; sourceTree = "<group>"; };
+		FE40B3EC2C51C99A005170AF /* ProximityRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProximityRange.swift; sourceTree = "<group>"; };
+		FE40B3EE2C51CB1F005170AF /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
+		FE40B3F12C51D9E0005170AF /* ShimmerEffectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerEffectHelper.swift; sourceTree = "<group>"; };
+		FE40B3F32C51DA44005170AF /* ShimmerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerConfig.swift; sourceTree = "<group>"; };
+		FE40B3F62C51DAA6005170AF /* ShimmerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +119,8 @@
 		FE40B32F2C5036D3005170AF /* SweepTask */ = {
 			isa = PBXGroup;
 			children = (
-				FE40B35E2C503B53005170AF /* Model */,
 				FE40B35B2C503AF9005170AF /* Utilities */,
+				FE40B35E2C503B53005170AF /* Model */,
 				FE40B3612C503E2E005170AF /* View */,
 				FE40B3622C503EA0005170AF /* ViewModel */,
 				FE40B3302C5036D3005170AF /* SweepTaskApp.swift */,
@@ -151,6 +161,7 @@
 			children = (
 				FE40B35C2C503B16005170AF /* BluetoothManager.swift */,
 				FE40B3672C505346005170AF /* HapticFeedback.swift */,
+				FE40B3F02C51D9CE005170AF /* ViewModifiers */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -160,6 +171,8 @@
 			children = (
 				FE40B35F2C503B61005170AF /* ScannedDevice.swift */,
 				FE40B3EA2C51997B005170AF /* SignalStrengthModel.swift */,
+				FE40B3EC2C51C99A005170AF /* ProximityRange.swift */,
+				FE40B3F32C51DA44005170AF /* ShimmerConfig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,9 +180,11 @@
 		FE40B3612C503E2E005170AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FE40B3F52C51DA96005170AF /* Extensions */,
 				FE40B3322C5036D3005170AF /* ContentView.swift */,
 				FE40B3632C503FB0005170AF /* DeviceLocationView.swift */,
 				FE40B3652C504B26005170AF /* SignalStrengthView.swift */,
+				FE40B3EE2C51CB1F005170AF /* ShimmerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -180,6 +195,22 @@
 				FE40B3E82C518D5B005170AF /* BluetoothViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FE40B3F02C51D9CE005170AF /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				FE40B3F12C51D9E0005170AF /* ShimmerEffectHelper.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		FE40B3F52C51DA96005170AF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FE40B3F62C51DAA6005170AF /* ShimmerExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,10 +344,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE40B3642C503FB0005170AF /* DeviceLocationView.swift in Sources */,
+				FE40B3F42C51DA44005170AF /* ShimmerConfig.swift in Sources */,
 				FE40B3682C505346005170AF /* HapticFeedback.swift in Sources */,
+				FE40B3F72C51DAA6005170AF /* ShimmerExtensions.swift in Sources */,
 				FE40B3662C504B26005170AF /* SignalStrengthView.swift in Sources */,
 				FE40B3332C5036D3005170AF /* ContentView.swift in Sources */,
 				FE40B35D2C503B16005170AF /* BluetoothManager.swift in Sources */,
+				FE40B3EF2C51CB1F005170AF /* ShimmerView.swift in Sources */,
+				FE40B3F22C51D9E0005170AF /* ShimmerEffectHelper.swift in Sources */,
+				FE40B3ED2C51C99A005170AF /* ProximityRange.swift in Sources */,
 				FE40B3E92C518D5B005170AF /* BluetoothViewModel.swift in Sources */,
 				FE40B3602C503B61005170AF /* ScannedDevice.swift in Sources */,
 				FE40B3312C5036D3005170AF /* SweepTaskApp.swift in Sources */,
